@@ -8,7 +8,12 @@
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "storybook": "start-storybook",
+    "prestorybook:build": "rm -rf storybook-static",
+    "storybook:build": "build-storybook -c .storybook",
+    "predeploy": "npm run storybook:build",
+    "deploy": "gh-pages -d storybook-static"
   },
   "repository": {
     "type": "git",
@@ -25,8 +30,14 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.1.10",
+    "@storybook/addon-info": "^5.1.10",
+    "@storybook/addon-knobs": "^5.1.10",
+    "@storybook/react": "^5.1.10",
     "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
     "codemirror": "^5.48.2",
+    "css-loader": "^3.1.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
@@ -34,6 +45,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
+    "gh-pages": "^2.0.1",
+    "highlight.js": "^9.15.9",
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -43,7 +56,9 @@
     "rollup-plugin-delete": "^1.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-scss": "^1.0.1",
-    "rollup-plugin-terser": "^5.1.1"
+    "rollup-plugin-terser": "^5.1.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
   },
   "peerDependencies": {
     "@babel/runtime": ">=7.5",
