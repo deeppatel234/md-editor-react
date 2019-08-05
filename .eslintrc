@@ -59,6 +59,7 @@
     "import/imports-first": ["error", "absolute-first"],
     "import/newline-after-import": "error",
     "prettier/prettier": "error",
-    "jsx-a11y/click-events-have-key-events": 0
+    "jsx-a11y/click-events-have-key-events": 0,
+    "import/prefer-default-export": 0,
   }
 }

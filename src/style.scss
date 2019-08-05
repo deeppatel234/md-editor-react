@@ -1,0 +1,22 @@
+.md-editor-wrapper {
+  display: flex;
+  border: 1px solid #E0E0E0;
+  height: 100%;
+
+  .md-editor-code {
+    flex-basis: 50%;
+    width: 50%;
+    overflow: auto;
+
+    > div, .CodeMirror {
+      height: 100%;
+    }
+  }
+
+  .md-editor-preview {
+    flex-basis: 50%;
+    width: 50%;
+    border-left: 1px solid #E0E0E0;
+    overflow: auto;
+  }
+}
