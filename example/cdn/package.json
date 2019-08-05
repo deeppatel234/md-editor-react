@@ -7,7 +7,7 @@
     "serve": "serve"
   },
   "dependencies": {
-    "markdown-editor": "file:../.."
+    "md-editor-react": "file:../.."
   },
   "devDependencies": {
     "serve": "latest"

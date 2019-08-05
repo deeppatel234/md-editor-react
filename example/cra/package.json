@@ -5,7 +5,7 @@
   "dependencies": {
     "codemirror": "^5.48.2",
     "highlight.js": "^9.15.9",
-    "markdown-editor": "../../",
+    "md-editor-react": "../../",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"

@@ -1,5 +1,5 @@
 {
-  "name": "markdown-editor",
+  "name": "md-editor-react",
   "version": "1.0.0",
   "description": "",
   "main": "dist/bundle.cjs.js",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deeppatel234/markdown-editor.git"
+    "url": "git+https://github.com/deeppatel234/md-editor-react.git"
   },
   "author": "Deep Patel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/deeppatel234/markdown-editor/issues"
+    "url": "https://github.com/deeppatel234/md-editor-react/issues"
   },
-  "homepage": "https://github.com/deeppatel234/markdown-editor#readme",
+  "homepage": "https://github.com/deeppatel234/md-editor-react#readme",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
