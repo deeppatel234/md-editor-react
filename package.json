@@ -1,6 +1,6 @@
 {
   "name": "md-editor-react",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
@@ -13,7 +13,8 @@
     "prestorybook:build": "rm -rf storybook-static",
     "storybook:build": "build-storybook -c .storybook",
     "predeploy": "npm run storybook:build",
-    "deploy": "gh-pages -d storybook-static"
+    "deploy": "gh-pages -d storybook-static",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
