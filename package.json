@@ -5,6 +5,9 @@
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
   "unpkg": "dist/bundle.umd.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
