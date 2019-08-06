@@ -3,7 +3,7 @@ import Editor from 'md-editor-react';
 import hljs from 'highlight.js';
 
 import 'highlight.js/styles/github-gist.css';
-import 'md-editor-react/dist/bundle.cjs.css';
+import 'md-editor-react/dist/style.css';
 import 'codemirror/mode/gfm/gfm';
 import 'codemirror/lib/codemirror.css';
 

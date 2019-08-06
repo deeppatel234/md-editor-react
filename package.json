@@ -11,7 +11,10 @@
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "npm run dev -- --watch",
     "build": "rollup -c",
+    "build:watch": "rollup -c --watch",
     "storybook": "start-storybook",
     "prestorybook:build": "rm -rf storybook-static",
     "storybook:build": "build-storybook -c .storybook",

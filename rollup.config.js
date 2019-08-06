@@ -9,6 +9,7 @@ const DIST_DIR = 'dist';
 const INPUT_FILE = 'src/index.js';
 const CSS_FILE = `${DIST_DIR}/style.css`;
 const EXTENSIONS = ['.js'];
+const isDevelopment = process.env.BUILD === 'development';
 
 const GLOBALS = {
   react: 'React',
@@ -34,43 +35,50 @@ const output = isProduction => {
   ];
 };
 
-module.exports = [
-  {
-    input: INPUT_FILE,
-    external: Object.keys(GLOBALS),
-    output: output(),
-    plugins: [
-      del({ targets: 'dist/*' }),
-      resolve({
-        extensions: EXTENSIONS,
-      }),
-      babel({
-        extensions: EXTENSIONS,
-        exclude: 'node_modules/**',
-      }),
-      commonjs(),
-      scss({
-        output: CSS_FILE,
-      }),
-    ],
-  },
-  {
-    input: INPUT_FILE,
-    external: Object.keys(GLOBALS),
-    output: output(true),
-    plugins: [
-      resolve({
-        extensions: EXTENSIONS,
-      }),
-      babel({
-        extensions: EXTENSIONS,
-        exclude: 'node_modules/**',
-      }),
-      commonjs(),
-      scss({
-        output: CSS_FILE,
-      }),
-      terser(),
-    ],
-  },
-];
+const developmentBuild = {
+  input: INPUT_FILE,
+  external: Object.keys(GLOBALS),
+  output: output(),
+  plugins: [
+    resolve({
+      extensions: EXTENSIONS,
+    }),
+    babel({
+      extensions: EXTENSIONS,
+      exclude: 'node_modules/**',
+    }),
+    commonjs(),
+    scss({
+      output: CSS_FILE,
+    }),
+  ],
+};
+
+const productionBuild = {
+  input: INPUT_FILE,
+  external: Object.keys(GLOBALS),
+  output: output(true),
+  plugins: [
+    del({ targets: 'dist/*' }),
+    resolve({
+      extensions: EXTENSIONS,
+    }),
+    babel({
+      extensions: EXTENSIONS,
+      exclude: 'node_modules/**',
+    }),
+    commonjs(),
+    scss({
+      output: CSS_FILE,
+    }),
+    terser(),
+  ],
+};
+
+const builds = [developmentBuild];
+
+if (!isDevelopment) {
+  builds.unshift(productionBuild);
+}
+
+module.exports = builds;
