@@ -1,14 +1,63 @@
 .md-editor-wrapper {
-  display: flex;
-  border: 1px solid #E0E0E0;
-  height: 100%;
+  * {
+    box-sizing: border-box;
+  }
+
+  .md-editor-icon {
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.165em;
+  }
+
+  .md-editor-toolbar-wrapper {
+    flex-basis: 100%;
+    width: 100%;
+    border: 1px solid #E0E0E0;
+    border-bottom: none;
+
+    .md-editor-toolbar {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      div {
+        margin: 2px;
+        padding: 5px;
+        cursor: pointer;
+        color: #757575;
+
+        &:hover {
+          background-color: #EEEEEE;
+        }
+
+        &.divider {
+          text-indent: -9999px;
+          margin: 0 5px;
+          padding: 5px 0;
+          border-right: 1px solid #EEEEEE;
+        }
+      }
+    }
+  }
+
+  .md-editor-area {
+    display: flex;
+    border: 1px solid #E0E0E0;
+    height: 100%;
+  }
 
   .md-editor-code {
     flex-basis: 50%;
     width: 50%;
     overflow: auto;
 
-    > div, .CodeMirror {
+    .CodeMirror {
       height: 100%;
     }
   }
