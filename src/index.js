@@ -17,6 +17,7 @@ import {
   QuoteIcon,
   CodeIcon,
   ClearIcon,
+  FullScreenIcon,
 } from './Components/Icons';
 
 import './style.scss';
@@ -121,6 +122,11 @@ const toolbarConfig = [
     title: 'Clear',
     icon: <ClearIcon />,
     command: 'clear',
+  },
+  {
+    title: 'Full Screen',
+    icon: <FullScreenIcon />,
+    command: 'fullscreen',
   },
 ];
 
@@ -239,6 +245,10 @@ const commands = {
     editor.focus();
   },
   clear: editor => editor.setValue(''),
+  fullscreen: (e, setState, state) => {
+    const { fullscreen } = state;
+    setState({ fullscreen: !fullscreen });
+  },
 };
 
 const Preview = ({ markDownValue, parser }) => {
@@ -259,6 +269,7 @@ class App extends React.PureComponent {
 
     this.state = {
       editorValue: '',
+      fullscreen: false,
     };
 
     this.parser = mdParser(props.parserOptions);
@@ -272,6 +283,7 @@ class App extends React.PureComponent {
     this.commands = commands;
 
     this.exeCommand = this.exeCommand.bind(this);
+    this.useAppState = this.useAppState.bind(this);
     this.onClickToolbar = this.onClickToolbar.bind(this);
   }
 
@@ -300,14 +312,18 @@ class App extends React.PureComponent {
   }
 
   exeCommand(command) {
-    this.commands[command](this.editor);
+    this.commands[command](this.editor, this.useAppState, this.state);
+  }
+
+  useAppState(state) {
+    this.setState(state);
   }
 
   render() {
-    const { editorValue } = this.state;
+    const { editorValue, fullscreen } = this.state;
 
     return (
-      <div className="md-editor-wrapper">
+      <div className={`md-editor-wrapper ${fullscreen ? 'fullscreen' : ''}`}>
         <div className="md-editor-toolbar-wrapper">
           <div className="md-editor-toolbar">
             {toolbarConfig.map(({ title, icon, command, divider }, index) => {
