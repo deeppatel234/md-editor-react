@@ -3,6 +3,10 @@
     box-sizing: border-box;
   }
 
+  .d-none {
+    display: none;
+  }
+
   &.fullscreen {
     position: fixed;
     top: 0;
@@ -63,8 +67,7 @@
   }
 
   .md-editor-code {
-    flex-basis: 50%;
-    width: 50%;
+    flex: 1;
     overflow: auto;
 
     .CodeMirror {
@@ -73,9 +76,25 @@
   }
 
   .md-editor-preview {
-    flex-basis: 50%;
-    width: 50%;
+    flex: 1;
+    position: relative;
     border-left: 1px solid #E0E0E0;
     overflow: auto;
+
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 1.5em;
+      color: #757575;
+      padding: 5px 10px;
+      border: 1px solid #E0E0E0;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #EEEEEE;
+      }
+    }
   }
 }

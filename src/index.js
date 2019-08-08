@@ -18,6 +18,9 @@ import {
   CodeIcon,
   ClearIcon,
   FullScreenIcon,
+  HTMLViewIcon,
+  CloseIcon,
+  EyeIcon,
 } from './Components/Icons';
 
 import './style.scss';
@@ -127,6 +130,16 @@ const toolbarConfig = [
     title: 'Full Screen',
     icon: <FullScreenIcon />,
     command: 'fullscreen',
+  },
+  {
+    title: 'Watch',
+    icon: <EyeIcon />,
+    command: 'watch',
+  },
+  {
+    title: 'HTML View',
+    icon: <HTMLViewIcon />,
+    command: 'htmlview',
   },
 ];
 
@@ -249,6 +262,14 @@ const commands = {
     const { fullscreen } = state;
     setState({ fullscreen: !fullscreen });
   },
+  htmlview: (e, setState, state) => {
+    const { htmlView } = state;
+    setState({ htmlView: !htmlView });
+  },
+  watch: (e, setState, state) => {
+    const { watchMode } = state;
+    setState({ watchMode: !watchMode });
+  },
 };
 
 const Preview = ({ markDownValue, parser }) => {
@@ -270,6 +291,8 @@ class App extends React.PureComponent {
     this.state = {
       editorValue: '',
       fullscreen: false,
+      htmlView: false,
+      watchMode: true,
     };
 
     this.parser = mdParser(props.parserOptions);
@@ -285,6 +308,7 @@ class App extends React.PureComponent {
     this.exeCommand = this.exeCommand.bind(this);
     this.useAppState = this.useAppState.bind(this);
     this.onClickToolbar = this.onClickToolbar.bind(this);
+    this.onClickCloseHTMLPreview = this.onClickCloseHTMLPreview.bind(this);
   }
 
   componentDidMount() {
@@ -311,6 +335,10 @@ class App extends React.PureComponent {
     this.exeCommand(command);
   }
 
+  onClickCloseHTMLPreview() {
+    this.setState({ htmlView: false });
+  }
+
   exeCommand(command) {
     this.commands[command](this.editor, this.useAppState, this.state);
   }
@@ -320,11 +348,13 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const { editorValue, fullscreen } = this.state;
+    const { editorValue, fullscreen, htmlView, watchMode } = this.state;
 
     return (
       <div className={`md-editor-wrapper ${fullscreen ? 'fullscreen' : ''}`}>
-        <div className="md-editor-toolbar-wrapper">
+        <div
+          className={`md-editor-toolbar-wrapper ${htmlView ? 'd-none' : ''}`}
+        >
           <div className="md-editor-toolbar">
             {toolbarConfig.map(({ title, icon, command, divider }, index) => {
               if (divider) {
@@ -339,7 +369,7 @@ class App extends React.PureComponent {
                   key={title}
                   title={title}
                   role="button"
-                  tabIndex={index+1}
+                  tabIndex={index + 1}
                   data-command={command}
                   onClick={this.onClickToolbar}
                 >
@@ -350,10 +380,25 @@ class App extends React.PureComponent {
           </div>
         </div>
         <div className="md-editor-area">
-          <div className="md-editor-code" ref={this.editorRef} />
-          <div className="md-editor-preview">
-            <Preview markDownValue={editorValue} parser={this.parser} />
-          </div>
+          <div
+            className={`md-editor-code ${htmlView ? 'd-none' : ''}`}
+            ref={this.editorRef}
+          />
+          {watchMode && (
+            <div className="md-editor-preview">
+              {htmlView && (
+                <div
+                  role="button"
+                  className="close"
+                  tabIndex="0"
+                  onClick={this.onClickCloseHTMLPreview}
+                >
+                  <CloseIcon />
+                </div>
+              )}
+              <Preview markDownValue={editorValue} parser={this.parser} />
+            </div>
+          )}
         </div>
       </div>
     );
