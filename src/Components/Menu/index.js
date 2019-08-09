@@ -1,5 +1,6 @@
-import Table from './Table';
+import TableMenu from './Table';
+import LinkMenu from './Link';
 
 import './style.scss';
 
-export { Table };
+export { TableMenu, LinkMenu };
