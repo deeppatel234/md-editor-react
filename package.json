@@ -74,6 +74,7 @@
   },
   "dependencies": {
     "insane": "^2.6.2",
-    "marked": "^0.7.0"
+    "marked": "^0.7.0",
+    "react-transition-group": "^4.2.2"
   }
 }

@@ -5,6 +5,8 @@ import mdParser from './lib/mdParser';
 import sanitizer from './lib/sanitizer';
 import { debounce, uniqueId } from './utils';
 
+import { Table } from './Components/Menu';
+
 import {
   ItalicIcon,
   BoldIcon,
@@ -21,127 +23,10 @@ import {
   HTMLViewIcon,
   CloseIcon,
   EyeIcon,
+  TableIcon,
 } from './Components/Icons';
 
 import './style.scss';
-
-const toolbarConfig = [
-  {
-    title: 'Bold',
-    icon: <BoldIcon />,
-    command: 'bold',
-  },
-  {
-    title: 'Italic',
-    icon: <ItalicIcon />,
-    command: 'italic',
-  },
-  {
-    title: 'Strike',
-    icon: <StrikeIcon />,
-    command: 'strike',
-  },
-  {
-    divider: true,
-  },
-  {
-    title: 'H1',
-    icon: <span>H1</span>,
-    command: 'h1',
-  },
-  {
-    title: 'H2',
-    icon: <span>H2</span>,
-    command: 'h2',
-  },
-  {
-    title: 'H3',
-    icon: <span>H3</span>,
-    command: 'h3',
-  },
-  {
-    title: 'H4',
-    icon: <span>H4</span>,
-    command: 'h4',
-  },
-  {
-    title: 'H5',
-    icon: <span>H5</span>,
-    command: 'h5',
-  },
-  {
-    title: 'H6',
-    icon: <span>H6</span>,
-    command: 'h6',
-  },
-  {
-    divider: true,
-  },
-  {
-    title: 'Order List',
-    icon: <OrderListIcon />,
-    command: 'orderlist',
-  },
-  {
-    title: 'Un Ordered List',
-    icon: <UnOrderListIcon />,
-    command: 'unorderlist',
-  },
-  {
-    title: 'Line',
-    icon: <LineIcon />,
-    command: 'line',
-  },
-  {
-    title: 'Quote',
-    icon: <QuoteIcon />,
-    command: 'quote',
-  },
-  {
-    divider: true,
-  },
-  {
-    title: 'Undo',
-    icon: <UndoIcon />,
-    command: 'undo',
-  },
-  {
-    title: 'Redo',
-    icon: <RedoIcon />,
-    command: 'redo',
-  },
-  {
-    divider: true,
-  },
-  {
-    title: 'Code',
-    icon: <CodeIcon />,
-    command: 'code',
-  },
-  {
-    divider: true,
-  },
-  {
-    title: 'Clear',
-    icon: <ClearIcon />,
-    command: 'clear',
-  },
-  {
-    title: 'Full Screen',
-    icon: <FullScreenIcon />,
-    command: 'fullscreen',
-  },
-  {
-    title: 'Watch',
-    icon: <EyeIcon />,
-    command: 'watch',
-  },
-  {
-    title: 'HTML View',
-    icon: <HTMLViewIcon />,
-    command: 'htmlview',
-  },
-];
 
 const headersCommand = (editor, h) => {
   const cursor = editor.getCursor();
@@ -158,119 +43,240 @@ const headersCommand = (editor, h) => {
   editor.focus();
 };
 
-const commands = {
-  bold: editor => {
-    const cursor = editor.getCursor();
-    const selection = editor.getSelection();
+const toolbarConfig = [
+  {
+    id: 'bold',
+    title: 'Bold',
+    icon: <BoldIcon />,
+    command: editor => {
+      const cursor = editor.getCursor();
+      const selection = editor.getSelection();
 
-    editor.replaceSelection(`**${selection}**`);
-    if (selection === '') {
-      editor.setCursor(cursor.line, cursor.ch + 2);
-    }
-    editor.focus();
+      editor.replaceSelection(`**${selection}**`);
+      if (selection === '') {
+        editor.setCursor(cursor.line, cursor.ch + 2);
+      }
+      editor.focus();
+    },
   },
-  italic: editor => {
-    const cursor = editor.getCursor();
-    const selection = editor.getSelection();
+  {
+    id: 'italic',
+    title: 'Italic',
+    icon: <ItalicIcon />,
+    command: editor => {
+      const cursor = editor.getCursor();
+      const selection = editor.getSelection();
 
-    editor.replaceSelection(`*${selection}*`);
-    if (selection === '') {
-      editor.setCursor(cursor.line, cursor.ch + 1);
-    }
-    editor.focus();
+      editor.replaceSelection(`*${selection}*`);
+      if (selection === '') {
+        editor.setCursor(cursor.line, cursor.ch + 1);
+      }
+      editor.focus();
+    },
   },
-  strike: editor => {
-    const cursor = editor.getCursor();
-    const selection = editor.getSelection();
+  {
+    id: 'strike',
+    title: 'Strike',
+    icon: <StrikeIcon />,
+    command: editor => {
+      const cursor = editor.getCursor();
+      const selection = editor.getSelection();
 
-    editor.replaceSelection(`~~${selection}~~`);
-    if (selection === '') {
-      editor.setCursor(cursor.line, cursor.ch + 2);
-    }
-    editor.focus();
+      editor.replaceSelection(`~~${selection}~~`);
+      if (selection === '') {
+        editor.setCursor(cursor.line, cursor.ch + 2);
+      }
+      editor.focus();
+    },
   },
-  h1: editor => headersCommand(editor, 1),
-  h2: editor => headersCommand(editor, 2),
-  h3: editor => headersCommand(editor, 3),
-  h4: editor => headersCommand(editor, 4),
-  h5: editor => headersCommand(editor, 5),
-  h6: editor => headersCommand(editor, 6),
-  orderlist: editor => {
-    const selection = editor.getSelection();
+  {
+    divider: true,
+  },
+  {
+    id: 'h1',
+    title: 'H1',
+    icon: <span>H1</span>,
+    command: editor => headersCommand(editor, 1),
+  },
+  {
+    id: 'h2',
+    title: 'H2',
+    icon: <span>H2</span>,
+    command: editor => headersCommand(editor, 2),
+  },
+  {
+    id: 'h3',
+    title: 'H3',
+    icon: <span>H3</span>,
+    command: editor => headersCommand(editor, 3),
+  },
+  {
+    id: 'h4',
+    title: 'H4',
+    icon: <span>H4</span>,
+    command: editor => headersCommand(editor, 4),
+  },
+  {
+    id: 'h5',
+    title: 'H5',
+    icon: <span>H5</span>,
+    command: editor => headersCommand(editor, 5),
+  },
+  {
+    id: 'h6',
+    title: 'H6',
+    icon: <span>H6</span>,
+    command: editor => headersCommand(editor, 6),
+  },
+  {
+    divider: true,
+  },
+  {
+    id: 'orderlist',
+    title: 'Order List',
+    icon: <OrderListIcon />,
+    command: editor => {
+      const selection = editor.getSelection();
 
-    if (selection === '') {
-      editor.replaceSelection(`1. ${selection}`);
-    } else {
-      const selectionText = selection
-        .split('\n')
-        .map((s, i) => (s === '' ? '' : `${i + 1}. ${s}`));
+      if (selection === '') {
+        editor.replaceSelection(`1. ${selection}`);
+      } else {
+        const selectionText = selection
+          .split('\n')
+          .map((s, i) => (s === '' ? '' : `${i + 1}. ${s}`));
 
-      editor.replaceSelection(selectionText.join('\n'));
-    }
-    editor.focus();
+        editor.replaceSelection(selectionText.join('\n'));
+      }
+      editor.focus();
+    },
   },
-  unorderlist: editor => {
-    const selection = editor.getSelection();
+  {
+    id: 'unorderlist',
+    title: 'Un Ordered List',
+    icon: <UnOrderListIcon />,
+    command: editor => {
+      const selection = editor.getSelection();
 
-    if (selection === '') {
-      editor.replaceSelection(`- ${selection}`);
-    } else {
-      const selectionText = selection
-        .split('\n')
-        .map(s => (s === '' ? '' : `- ${s}`));
+      if (selection === '') {
+        editor.replaceSelection(`- ${selection}`);
+      } else {
+        const selectionText = selection
+          .split('\n')
+          .map(s => (s === '' ? '' : `- ${s}`));
 
-      editor.replaceSelection(selectionText.join('\n'));
-    }
-    editor.focus();
+        editor.replaceSelection(selectionText.join('\n'));
+      }
+      editor.focus();
+    },
   },
-  line: editor => {
-    const cursor = editor.getCursor();
-    editor.replaceSelection(
-      `${cursor.ch !== 0 ? '\n\n' : '\n'}------------\n\n`,
-    );
-    editor.focus();
+  {
+    id: 'line',
+    title: 'Line',
+    icon: <LineIcon />,
+    command: editor => {
+      const cursor = editor.getCursor();
+      editor.replaceSelection(
+        `${cursor.ch !== 0 ? '\n\n' : '\n'}------------\n\n`,
+      );
+      editor.focus();
+    },
   },
-  quote: editor => {
-    const cursor = editor.getCursor();
-    const selection = editor.getSelection();
-    const text = `> ${selection}`;
+  {
+    id: 'quote',
+    title: 'Quote',
+    icon: <QuoteIcon />,
+    command: editor => {
+      const cursor = editor.getCursor();
+      const selection = editor.getSelection();
+      const text = `> ${selection}`;
 
-    if (cursor.ch !== 0) {
-      editor.setCursor(cursor.line, 0);
-      editor.replaceSelection(text);
-      editor.setCursor(cursor.line, cursor.ch + 2);
-    } else {
-      editor.replaceSelection(text);
-    }
-    editor.focus();
+      if (cursor.ch !== 0) {
+        editor.setCursor(cursor.line, 0);
+        editor.replaceSelection(text);
+        editor.setCursor(cursor.line, cursor.ch + 2);
+      } else {
+        editor.replaceSelection(text);
+      }
+      editor.focus();
+    },
   },
-  undo: editor => editor.undo(),
-  redo: editor => editor.redo(),
-  code: editor => {
-    const cursor = editor.getCursor();
-    const selection = editor.getSelection();
+  {
+    divider: true,
+  },
+  {
+    id: 'undo',
+    title: 'Undo',
+    icon: <UndoIcon />,
+    command: editor => editor.undo(),
+  },
+  {
+    id: 'redo',
+    title: 'Redo',
+    icon: <RedoIcon />,
+    command: editor => editor.redo(),
+  },
+  {
+    divider: true,
+  },
+  {
+    id: 'code',
+    title: 'Code',
+    icon: <CodeIcon />,
+    command: editor => {
+      const cursor = editor.getCursor();
+      const selection = editor.getSelection();
 
-    editor.replaceSelection(`\`${selection}\``);
+      editor.replaceSelection(`\`${selection}\``);
 
-    if (selection === '') {
-      editor.setCursor(cursor.line, cursor.ch + 1);
-    }
-    editor.focus();
+      if (selection === '') {
+        editor.setCursor(cursor.line, cursor.ch + 1);
+      }
+      editor.focus();
+    },
   },
-  clear: editor => editor.setValue(''),
-  fullscreen: (e, setState, state) => {
-    const { fullscreen } = state;
-    setState({ fullscreen: !fullscreen });
+  {
+    id: 'table',
+    title: 'Table',
+    icon: <TableIcon />,
+    component: Table,
   },
-  htmlview: (e, setState, state) => {
-    const { htmlView } = state;
-    setState({ htmlView: !htmlView });
+  {
+    divider: true,
   },
-  watch: (e, setState, state) => {
-    const { watchMode } = state;
-    setState({ watchMode: !watchMode });
+  {
+    id: 'clear',
+    title: 'Clear',
+    icon: <ClearIcon />,
+    command: editor => editor.setValue(''),
   },
-};
+  {
+    id: 'fullscreen',
+    title: 'Full Screen',
+    icon: <FullScreenIcon />,
+    command: (e, setState, state) => {
+      const { fullscreen } = state;
+      setState({ fullscreen: !fullscreen });
+    },
+  },
+  {
+    id: 'watch',
+    title: 'Watch',
+    icon: <EyeIcon />,
+    command: (e, setState, state) => {
+      const { watchMode } = state;
+      setState({ watchMode: !watchMode });
+    },
+  },
+  {
+    id: 'htmlview',
+    title: 'HTML View',
+    icon: <HTMLViewIcon />,
+    command: (e, setState, state) => {
+      const { htmlView } = state;
+      setState({ htmlView: !htmlView });
+    },
+  },
+];
 
 const Preview = ({ markDownValue, parser }) => {
   const markedValue = parser(markDownValue);
@@ -293,6 +299,8 @@ class App extends React.PureComponent {
       fullscreen: false,
       htmlView: false,
       watchMode: true,
+      isModalVisible: false,
+      modalCommandId: false,
     };
 
     this.parser = mdParser(props.parserOptions);
@@ -303,11 +311,17 @@ class App extends React.PureComponent {
     );
 
     this.editorRef = React.createRef();
-    this.commands = commands;
+    this.toolbarConfig = toolbarConfig;
+
+    this.toolbarConfigMap = {};
+    toolbarConfig.forEach(t => {
+      this.toolbarConfigMap[t.id] = t;
+    });
 
     this.exeCommand = this.exeCommand.bind(this);
     this.useAppState = this.useAppState.bind(this);
     this.onClickToolbar = this.onClickToolbar.bind(this);
+    this.onClickCloseModal = this.onClickCloseModal.bind(this);
     this.onClickCloseHTMLPreview = this.onClickCloseHTMLPreview.bind(this);
   }
 
@@ -335,12 +349,35 @@ class App extends React.PureComponent {
     this.exeCommand(command);
   }
 
+  onClickCloseModal() {
+    this.setState({
+      commandId: false,
+    });
+  }
+
   onClickCloseHTMLPreview() {
     this.setState({ htmlView: false });
   }
 
+  getMenuComponent() {
+    const { commandId } = this.state;
+    const { component: Comp } = this.toolbarConfigMap[commandId];
+
+    return <Comp close={this.onClickCloseModal} editor={this.editor} />;
+  }
+
   exeCommand(command) {
-    this.commands[command](this.editor, this.useAppState, this.state);
+    const tool = this.toolbarConfigMap[command];
+    if (tool) {
+      if (tool.command) {
+        tool.command(this.editor, this.useAppState, this.state);
+      }
+      if (tool.component) {
+        this.setState({
+          commandId: command,
+        });
+      }
+    }
   }
 
   useAppState(state) {
@@ -348,15 +385,22 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const { editorValue, fullscreen, htmlView, watchMode } = this.state;
+    const {
+      editorValue,
+      fullscreen,
+      htmlView,
+      watchMode,
+      commandId,
+    } = this.state;
 
     return (
       <div className={`md-editor-wrapper ${fullscreen ? 'fullscreen' : ''}`}>
+        {commandId && this.getMenuComponent()}
         <div
           className={`md-editor-toolbar-wrapper ${htmlView ? 'd-none' : ''}`}
         >
           <div className="md-editor-toolbar">
-            {toolbarConfig.map(({ title, icon, command, divider }, index) => {
+            {toolbarConfig.map(({ title, icon, id, divider }, index) => {
               if (divider) {
                 return (
                   <div key={uniqueId('divider')} className="divider">
@@ -370,7 +414,7 @@ class App extends React.PureComponent {
                   title={title}
                   role="button"
                   tabIndex={index + 1}
-                  data-command={command}
+                  data-command={id}
                   onClick={this.onClickToolbar}
                 >
                   {icon}

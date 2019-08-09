@@ -13,6 +13,7 @@ const isDevelopment = process.env.BUILD === 'development';
 
 const GLOBALS = {
   react: 'React',
+  'react-dom': 'ReactDOM',
   codemirror: 'CodeMirror',
 };
 
