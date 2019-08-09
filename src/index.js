@@ -5,7 +5,7 @@ import mdParser from './lib/mdParser';
 import sanitizer from './lib/sanitizer';
 import { debounce, uniqueId } from './utils';
 
-import { TableMenu, LinkMenu } from './Components/Menu';
+import { TableMenu, LinkMenu, ImageMenu } from './Components/Menu';
 
 import {
   ItalicIcon,
@@ -25,6 +25,7 @@ import {
   EyeIcon,
   TableIcon,
   LinkIcon,
+  ImageIcon,
 } from './Components/Icons';
 
 import './style.scss';
@@ -246,6 +247,12 @@ const toolbarConfig = [
     title: 'Link',
     icon: <LinkIcon />,
     component: LinkMenu,
+  },
+  {
+    id: 'image',
+    title: 'Image',
+    icon: <ImageIcon />,
+    component: ImageMenu,
   },
   {
     divider: true,
