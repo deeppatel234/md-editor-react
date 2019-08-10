@@ -29,7 +29,8 @@ import {
   CheckBoxIcon,
 } from './Components/Icons';
 
-import './style.scss';
+import './scss/style.scss';
+import './scss/md-view.scss';
 
 const headersCommand = (editor, h) => {
   const cursor = editor.getCursor();
@@ -438,10 +439,8 @@ class App extends React.PureComponent {
     return (
       <div className={`md-editor-wrapper ${fullscreen ? 'fullscreen' : ''}`}>
         {commandId && this.getMenuComponent()}
-        <div
-          className={`md-editor-toolbar-wrapper ${htmlView ? 'd-none' : ''}`}
-        >
-          <div className="md-editor-toolbar">
+        <div className={`md-editor-menubar ${htmlView ? 'd-none' : ''}`}>
+          <div className="md-editor-menu">
             {toolbarConfig.map(({ title, icon, id, divider }, index) => {
               if (divider) {
                 return (

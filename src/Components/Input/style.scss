@@ -1,4 +1,8 @@
-.md-editor-input {
-  border: 1px solid #E0E0E0;
-  padding: 5px;
+@import "./variables";
+
+#{$prefix}input {
+  padding: 5px 10px;
+  font-size: 1em;
+  border: $border;
+  outline: none;
 }

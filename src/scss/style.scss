@@ -1,8 +1,11 @@
-.md-editor-wrapper {
+@import "./variables";
+
+#{$prefix}wrapper {
   display: flex;
   flex-direction: column;
   min-height: 350px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-family: $font-family;
+  font-size: 16px;
 
   * {
     box-sizing: border-box;
@@ -22,7 +25,7 @@
     margin: 0 auto;
   }
 
-  .md-editor-icon {
+  #{$prefix}icon {
     display: inline-block;
     color: inherit;
     font-style: normal;
@@ -32,57 +35,57 @@
     vertical-align: -0.165em;
   }
 
-  .md-editor-toolbar-wrapper {
+  #{$prefix}menubar {
     width: 100%;
-    border: 1px solid #E0E0E0;
+    border: $border;
     border-bottom: none;
 
-    .md-editor-toolbar {
+    #{$prefix}menu {
       display: flex;
       align-items: center;
       margin: 0;
       padding: 0;
-      list-style: none;
 
       div {
         margin: 2px;
         padding: 5px;
         cursor: pointer;
-        color: #757575;
+        color: $font-color;
 
         &:hover {
-          background-color: #EEEEEE;
+          background-color: $light-gray;
         }
 
         &.divider {
           text-indent: -9999px;
           margin: 0 5px;
           padding: 5px 0;
-          border-right: 1px solid #EEEEEE;
+          border-right: 1px solid $light-gray;
         }
       }
     }
   }
 
-  .md-editor-area {
+  #{$prefix}area {
     display: flex;
     flex: 1;
-    border: 1px solid #E0E0E0;
+    border: $border;
   }
 
-  .md-editor-code {
+  #{$prefix}code {
     flex: 1;
     overflow: auto;
 
     .CodeMirror {
       height: 100%;
+      font-size: 0.8em;
     }
   }
 
-  .md-editor-preview {
+  #{$prefix}preview {
     flex: 1;
     position: relative;
-    border-left: 1px solid #E0E0E0;
+    border-left: $border;
     overflow: auto;
 
     .close {
@@ -90,14 +93,14 @@
       right: 20px;
       top: 20px;
       font-size: 1.5em;
-      color: #757575;
+      color: $font-color;
       padding: 5px 10px;
-      border: 1px solid #E0E0E0;
+      border: $border;
       border-radius: 5px;
       cursor: pointer;
 
       &:hover {
-        background-color: #EEEEEE;
+        background-color: $light-gray;
       }
     }
   }

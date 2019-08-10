@@ -54,15 +54,25 @@ class TableMenu extends React.PureComponent {
 
     return (
       <Modal visible closable header="Tables" onClose={close}>
-        <Modal.Body className="table-modal">
-          <div className="input-items">
-            <span>Rows</span>
-            <Input value={rows} name="rows" onChange={this.onChangeInput} />
-          </div>
-          <div className="input-items">
-            <span>Cols</span>
-            <Input value={cols} name="cols" onChange={this.onChangeInput} />
-          </div>
+        <Modal.Body className="menu-modal">
+          <table className="input-table">
+            <tr>
+              <td>
+                <span>Rows</span>
+              </td>
+              <td>
+                <Input value={rows} name="rows" onChange={this.onChangeInput} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Cols</span>
+              </td>
+              <td>
+                <Input value={cols} name="cols" onChange={this.onChangeInput} />
+              </td>
+            </tr>
+          </table>
         </Modal.Body>
         <Modal.Footer onSuccess={this.onClickSuccess} onCancel={close} />
       </Modal>

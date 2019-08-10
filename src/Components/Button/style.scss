@@ -1,6 +1,10 @@
-.md-editor-button {
-  padding: 5px 10px;
+@import "./variables";
+
+#{$prefix}button {
+  font-size: 0.8em;
+  padding: 8px 15px;
   background: #fff;
-  border: 1px solid #E0E0E0;
+  border: $border;
   cursor: pointer;
+  outline: none;
 }

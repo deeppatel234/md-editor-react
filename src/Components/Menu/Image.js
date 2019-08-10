@@ -47,23 +47,41 @@ class ImageMenu extends React.PureComponent {
 
     return (
       <Modal visible closable header="Image" onClose={close}>
-        <Modal.Body className="image-modal">
-          <div className="input-items">
-            <span>Address</span>
-            <Input
-              value={address}
-              name="address"
-              onChange={this.onChangeInput}
-            />
-          </div>
-          <div className="input-items">
-            <span>Title</span>
-            <Input value={title} name="title" onChange={this.onChangeInput} />
-          </div>
-          <div className="input-items">
-            <span>Link</span>
-            <Input value={link} name="link" onChange={this.onChangeInput} />
-          </div>
+        <Modal.Body className="menu-modal">
+          <table className="input-table">
+            <tr>
+              <td>
+                <span>Address</span>
+              </td>
+              <td>
+                <Input
+                  value={address}
+                  name="address"
+                  onChange={this.onChangeInput}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Title</span>
+              </td>
+              <td>
+                <Input
+                  value={title}
+                  name="title"
+                  onChange={this.onChangeInput}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Link</span>
+              </td>
+              <td>
+                <Input value={link} name="link" onChange={this.onChangeInput} />
+              </td>
+            </tr>
+          </table>
         </Modal.Body>
         <Modal.Footer onSuccess={this.onClickSuccess} onCancel={close} />
       </Modal>

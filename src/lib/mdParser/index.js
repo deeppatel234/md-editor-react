@@ -1,5 +1,4 @@
 import marked from 'marked';
-import './style.scss';
 
 const markedRender = new marked.Renderer();
 

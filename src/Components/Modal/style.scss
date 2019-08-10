@@ -1,4 +1,6 @@
-.md-editor-modal {
+@import './variables';
+
+#{$prefix}modal {
   position: absolute;
   top: 0;
   z-index: 999;
@@ -9,6 +11,7 @@
   height: 100%;
   background-color: rgba(128, 128, 128, 0.3);
   animation: fadeIn 0.3s;
+  font-family: sans-serif;
 
   @keyframes fadeIn {
     0% {
@@ -29,35 +32,18 @@
     }
   }
 
-  &.md-editor-modal-exit {
-    opacity: 1;
-  }
-  &.md-editor-modal-exit-active {
-    opacity: 0;
-    transition: opacity 200ms;
-  }
-
   .modal-wrapper {
     max-height: 80%;
     background-color: #fff;
     border-radius: 5px;
     animation: blowUpModal 0.3s;
-
-    &.modal-wrapper-exit {
-      transform: scale(1);
-    }
-
-    &.modal-wrapper-exit-active {
-      transform: scale(0);
-      transition: transform 300ms;
-    }
   }
 
   .modal-header {
     display: flex;
     justify-content: space-between;
     padding: 15px 20px;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: $border;
 
     .close-button {
       cursor: pointer;
@@ -75,6 +61,18 @@
 
     button {
       margin-left: 10px;
+    }
+  }
+
+  .menu-modal {
+    .input-table {
+      font-size: 0.9em;
+      td {
+        padding: 5px 0px;
+      }
+      span {
+        padding-right: 10px;
+      }
     }
   }
 }
