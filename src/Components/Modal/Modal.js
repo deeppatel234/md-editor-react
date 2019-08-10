@@ -1,81 +1,39 @@
-import React, { useCallback } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import { CloseIcon } from '../Icons';
+import ModalComponent from './ModalComponent';
 
-const Modal = ({
-  visible,
-  children,
-  onClose,
-  maskClosable,
-  header,
-  closable,
-  setUnMounted,
-}) => {
-  const onCloseModal = useCallback(() => {
-    if (onClose) {
-      onClose();
+import './style.scss';
+
+const modalRoot = document.body;
+
+class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.el = document.createElement('div');
+  }
+
+  componentDidMount() {
+    modalRoot.appendChild(this.el);
+  }
+
+  componentWillUnmount() {
+    modalRoot.removeChild(this.el);
+  }
+
+  render() {
+    const { visible, ...rest } = this.props;
+    if (!visible) {
+      return null;
     }
-  }, []);
 
-  const onClickBody = useCallback(() => {
-    if (maskClosable) {
-      onCloseModal();
-    }
-  }, []);
+    return ReactDOM.createPortal(<ModalComponent {...rest} />, this.el);
+  }
+}
 
-  const onClickModalWrapper = useCallback(event => {
-    event.stopPropagation();
-  }, []);
+Modal.Body = ModalComponent.Body;
 
-  return (
-    <CSSTransition in={visible} timeout={300} classNames="md-editor-modal">
-      <div
-        role="button"
-        tabIndex="0"
-        className="md-editor-modal"
-        onClick={onClickBody}
-      >
-        <CSSTransition
-          in={visible}
-          timeout={300}
-          classNames="modal-wrapper"
-          onExited={() => setUnMounted(true)}
-        >
-          <div
-            role="button"
-            tabIndex="0"
-            className="modal-wrapper"
-            onClick={onClickModalWrapper}
-          >
-            {header && (
-              <div className="modal-header">
-                <div>{header}</div>
-                {closable && (
-                  <div
-                    className="close-button"
-                    role="button"
-                    tabIndex={0}
-                    onClick={onCloseModal}
-                  >
-                    <CloseIcon />
-                  </div>
-                )}
-              </div>
-            )}
-            {children}
-          </div>
-        </CSSTransition>
-      </div>
-    </CSSTransition>
-  );
-};
-
-Modal.defaultProps = {
-  visible: false,
-  onClose: false,
-  maskClosable: true,
-  closable: true,
-};
+Modal.Footer = ModalComponent.Footer;
 
 export default Modal;

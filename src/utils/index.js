@@ -15,3 +15,16 @@ export const uniqueId = prefix => {
   idCounter += 1;
   return prefix + idCounter;
 };
+
+export const memoize = func => {
+  const cache = new Map();
+
+  return function(args) {
+    if (cache.has(args)) {
+      return cache.get(args);
+    }
+    const result = func.apply(this, args);
+    cache.set(args, result);
+    return result;
+  };
+};

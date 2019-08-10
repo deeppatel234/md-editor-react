@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Modal from '../Modal';
-import Input from '../Input';
+import { MDModal } from '../Modal';
+import { MDInput } from '../Input';
 
 class LinkMenu extends React.PureComponent {
   constructor(props) {
@@ -43,37 +43,39 @@ class LinkMenu extends React.PureComponent {
     const { address, title } = this.state;
 
     return (
-      <Modal visible closable header="Link" onClose={close}>
-        <Modal.Body className="menu-modal">
+      <MDModal visible closable header="Link" onClose={close}>
+        <MDModal.Body className="menu-modal">
           <table className="input-table">
-            <tr>
-              <td>
-                <span>Address</span>
-              </td>
-              <td>
-                <Input
-                  value={address}
-                  name="address"
-                  onChange={this.onChangeInput}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span>Title</span>
-              </td>
-              <td>
-                <Input
-                  value={title}
-                  name="title"
-                  onChange={this.onChangeInput}
-                />
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <span>Address</span>
+                </td>
+                <td>
+                  <MDInput
+                    value={address}
+                    name="address"
+                    onChange={this.onChangeInput}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Title</span>
+                </td>
+                <td>
+                  <MDInput
+                    value={title}
+                    name="title"
+                    onChange={this.onChangeInput}
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
-        </Modal.Body>
-        <Modal.Footer onSuccess={this.onClickSuccess} onCancel={close} />
-      </Modal>
+        </MDModal.Body>
+        <MDModal.Footer onSuccess={this.onClickSuccess} onCancel={close} />
+      </MDModal>
     );
   }
 }

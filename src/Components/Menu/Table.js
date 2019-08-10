@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Modal from '../Modal';
-import Input from '../Input';
+import { MDModal } from '../Modal';
+import { MDInput } from '../Input';
 
 class TableMenu extends React.PureComponent {
   constructor(props) {
@@ -53,29 +53,39 @@ class TableMenu extends React.PureComponent {
     const { rows, cols } = this.state;
 
     return (
-      <Modal visible closable header="Tables" onClose={close}>
-        <Modal.Body className="menu-modal">
+      <MDModal visible closable header="Tables" onClose={close}>
+        <MDModal.Body className="menu-modal">
           <table className="input-table">
-            <tr>
-              <td>
-                <span>Rows</span>
-              </td>
-              <td>
-                <Input value={rows} name="rows" onChange={this.onChangeInput} />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span>Cols</span>
-              </td>
-              <td>
-                <Input value={cols} name="cols" onChange={this.onChangeInput} />
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <span>Rows</span>
+                </td>
+                <td>
+                  <MDInput
+                    value={rows}
+                    name="rows"
+                    onChange={this.onChangeInput}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Cols</span>
+                </td>
+                <td>
+                  <MDInput
+                    value={cols}
+                    name="cols"
+                    onChange={this.onChangeInput}
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
-        </Modal.Body>
-        <Modal.Footer onSuccess={this.onClickSuccess} onCancel={close} />
-      </Modal>
+        </MDModal.Body>
+        <MDModal.Footer onSuccess={this.onClickSuccess} onCancel={close} />
+      </MDModal>
     );
   }
 }
