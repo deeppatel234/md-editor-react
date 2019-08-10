@@ -26,6 +26,7 @@ import {
   TableIcon,
   LinkIcon,
   ImageIcon,
+  CheckBoxIcon,
 } from './Components/Icons';
 
 import './style.scss';
@@ -172,6 +173,25 @@ const toolbarConfig = [
     },
   },
   {
+    id: 'checkbox',
+    title: 'Checkbox',
+    icon: <CheckBoxIcon />,
+    command: editor => {
+      const selection = editor.getSelection();
+
+      if (selection === '') {
+        editor.replaceSelection(`- [ ] ${selection}`);
+      } else {
+        const selectionText = selection
+          .split('\n')
+          .map(s => (s === '' ? '' : `- [ ] ${s}`));
+
+        editor.replaceSelection(selectionText.join('\n'));
+      }
+      editor.focus();
+    },
+  },
+  {
     id: 'line',
     title: 'Line',
     icon: <LineIcon />,
@@ -304,6 +324,11 @@ const Preview = ({ markDownValue, parser }) => {
   );
 };
 
+const DEFAULT_OPTIONS = {
+  mode: 'gfm',
+  lineNumbers: true,
+};
+
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -340,9 +365,12 @@ class App extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { options } = this.props;
+    const { options = {} } = this.props;
 
-    this.editor = CodeMirror(this.editorRef.current, options);
+    this.editor = CodeMirror(this.editorRef.current, {
+      ...DEFAULT_OPTIONS,
+      ...options,
+    });
 
     this.editor.on('change', () => {
       this.onChangeEditorValue(this.editor.getValue());

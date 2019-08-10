@@ -11,10 +11,6 @@ function App() {
   return (
     <div>
       <Editor
-        options={{
-          mode: "gfm",
-          lineNumbers: true
-        }}
         parserOptions={{
           highlight: code => hljs.highlightAuto(code).value,
         }}
