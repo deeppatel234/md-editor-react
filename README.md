@@ -8,7 +8,7 @@
   <img src="site/public/screenshot.png" />
 </p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![NPM Download](https://img.shields.io/npm/dt/md-editor-react.svg)](https://www.npmjs.com/package/md-editor-react) [![NPM](https://img.shields.io/npm/v/md-editor-react.svg)](https://www.npmjs.com/package/md-editor-react)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![NPM Download](https://img.shields.io/npm/dt/md-editor-react.svg)](https://www.npmjs.com/package/md-editor-react) [![NPM](https://img.shields.io/npm/v/md-editor-react.svg)](https://www.npmjs.com/package/md-editor-react) [![npm bundle size](https://img.shields.io/bundlephobia/min/md-editor-react)](https://bundlephobia.com/result?p=md-editor-react) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/md-editor-react)](https://bundlephobia.com/result?p=md-editor-react)
 
 ## Installation
 
