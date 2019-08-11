@@ -1,5 +1,5 @@
 import React from 'react';
-import Editor from 'md-editor-react';
+import { MDEditor } from 'md-editor-react';
 import hljs from 'highlight.js';
 
 import 'highlight.js/styles/github-gist.css';
@@ -10,7 +10,8 @@ import 'md-editor-react/dist/style.css';
 function App() {
   return (
     <div>
-      <Editor
+      <MDEditor
+        defaultValue="Hello World"
         parserOptions={{
           highlight: code => hljs.highlightAuto(code).value,
         }}
