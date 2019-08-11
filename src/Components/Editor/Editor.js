@@ -144,7 +144,7 @@ class Editor extends React.PureComponent {
   }
 
   render() {
-    const { parserOptions, className } = this.props;
+    const { parserOptions, sanitizerOptions, className } = this.props;
 
     const {
       editorValue,
@@ -205,7 +205,11 @@ class Editor extends React.PureComponent {
                   <CloseIcon />
                 </div>
               )}
-              <MDPreview value={editorValue} parserOptions={parserOptions} />
+              <MDPreview
+                value={editorValue}
+                parserOptions={parserOptions}
+                sanitizerOptions={sanitizerOptions}
+              />
             </div>
           )}
         </div>
@@ -223,6 +227,8 @@ Editor.defaultProps = {
   menuConfig: [],
   defaultValue: '',
   parserOptions: {},
+  sanitizerOptions: {},
+  onChange: false,
 };
 
 export default Editor;
