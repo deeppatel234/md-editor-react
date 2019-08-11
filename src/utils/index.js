@@ -16,15 +16,21 @@ export const uniqueId = prefix => {
   return prefix + idCounter;
 };
 
-export const memoize = func => {
-  const cache = new Map();
+export const shallowCompare = (obj1, obj2) =>
+  Object.keys(obj1).length === Object.keys(obj2).length &&
+  Object.keys(obj1).every(key => obj1[key] === obj2[key]);
 
-  return function(args) {
-    if (cache.has(args)) {
-      return cache.get(args);
+export const compareMenuList = (arr1, arr2) => {
+  console.log(arr1, arr2);
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  let isSame = true;
+  for (let i = 0; i < arr1.length; i += 1) {
+    if (arr1[i].id !== arr2[i].id) {
+      isSame = false;
+      break;
     }
-    const result = func.apply(this, args);
-    cache.set(args, result);
-    return result;
-  };
+  }
+  return isSame;
 };

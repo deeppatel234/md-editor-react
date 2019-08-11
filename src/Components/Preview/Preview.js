@@ -2,6 +2,8 @@ import React from 'react';
 import sanitizer from '../../lib/sanitizer';
 import mdParser from '../../lib/mdParser';
 
+import '../../scss/md-view.scss';
+
 const Preview = ({ markDownValue, parserOptions }) => {
   const markedValue = mdParser(parserOptions)(markDownValue);
   const sanitizerValue = sanitizer(markedValue);
