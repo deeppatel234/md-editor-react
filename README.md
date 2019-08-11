@@ -20,7 +20,7 @@ $ npm install md-editor-react codemirror --save
 
 MDEditor is used for show editor with editing controlls and live preview
 
-```javascipt
+```javascript
 import { MDEditor } from 'md-editor-react';
 
 import 'md-editor-react/dist/style.css';
@@ -56,7 +56,7 @@ import 'codemirror/lib/codemirror.css';
 
 MDPreview is used for parse markdown and preview html
 
-```javascipt
+```javascript
 import { MDPreview } from 'md-editor-react';
 
 import 'md-editor-react/dist/style.css';
@@ -81,7 +81,7 @@ for highlight code you can used [highlightjs](https://highlightjs.org "highlight
 
 #### how to use in MDEditor
 
-```javascipt
+```javascript
 import { MDEditor } from 'md-editor-react';
 import hljs from 'highlight.js';
 
@@ -102,7 +102,7 @@ import 'codemirror/lib/codemirror.css';
 
 #### how to use in MDPreview
 
-```javascipt
+```javascript
 import { MDPreview } from 'md-editor-react';
 import hljs from 'highlight.js';
 
@@ -123,10 +123,10 @@ import 'highlight.js/styles/github-gist.css';
 
 use `menuConfig` props in MDEditor component
 
-```javascipt
+```javascript
 <MDEditor
   menuConfig={[{
-	id: 'uniq_id',
+    id: 'uniq_id',
     title: 'Menu Title',
     icon: <MenuIcon />,
     command: editor => { /* write your code here */ },
@@ -147,10 +147,10 @@ use `menuConfig` props in MDEditor component
 
 #### add divider in menu bar
 
-```javascipt
+```javascript
 <MDEditor
   menuConfig={[{
-	divider: true
+     divider: true
   }]}
 />
 
@@ -160,7 +160,7 @@ use `menuConfig` props in MDEditor component
 
 if you want to display model like table, link menu. just import and use MDModel component.
 
-```javascipt
+```javascript
 import { MDModal, MDInput, MDButton } from 'md-editor-react';
 
 
