@@ -26,9 +26,9 @@ class Editor extends React.PureComponent {
     this.state = {
       editorValue: props.defaultValue,
       menuConfigList: this.prepareMenu(props.menuConfig),
-      fullscreen: false,
+      fullscreen: props.fullScreen,
+      watchMode: props.watchMode,
       htmlView: false,
-      watchMode: true,
       isModalVisible: false,
       modalCommandId: false,
     };
@@ -144,7 +144,7 @@ class Editor extends React.PureComponent {
   }
 
   render() {
-    const { parserOptions } = this.props;
+    const { parserOptions, className } = this.props;
 
     const {
       editorValue,
@@ -156,7 +156,11 @@ class Editor extends React.PureComponent {
     } = this.state;
 
     return (
-      <div className={`md-editor-wrapper ${fullscreen ? 'fullscreen' : ''}`}>
+      <div
+        className={`md-editor-wrapper ${className} ${
+          fullscreen ? 'fullscreen' : ''
+        }`}
+      >
         {commandId && this.getMenuComponent()}
         <div className={`md-editor-menubar ${htmlView ? 'd-none' : ''}`}>
           <div className="md-editor-menu">
@@ -212,6 +216,9 @@ class Editor extends React.PureComponent {
 
 Editor.defaultProps = {
   delay: 300,
+  fullScreen: false,
+  watchMode: true,
+  className: '',
   options: {},
   menuConfig: [],
   defaultValue: '',
