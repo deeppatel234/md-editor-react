@@ -21,7 +21,6 @@ export const shallowCompare = (obj1, obj2) =>
   Object.keys(obj1).every(key => obj1[key] === obj2[key]);
 
 export const compareMenuList = (arr1, arr2) => {
-  console.log(arr1, arr2);
   if (arr1.length !== arr2.length) {
     return false;
   }

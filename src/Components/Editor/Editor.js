@@ -24,7 +24,7 @@ class Editor extends React.PureComponent {
     super(props);
 
     this.state = {
-      editorValue: '',
+      editorValue: props.defaultValue,
       menuConfigList: this.prepareMenu(props.menuConfig),
       fullscreen: false,
       htmlView: false,
@@ -47,12 +47,14 @@ class Editor extends React.PureComponent {
 
   componentDidMount() {
     const { options } = this.props;
+    const { editorValue } = this.state;
 
     this.editor = CodeMirror(this.editorRef.current, {
       ...DEFAULT_OPTIONS,
       ...options,
     });
 
+    this.editor.setValue(editorValue);
     this.editor.on('change', () => {
       this.onChangeEditorValue(this.editor.getValue());
     });
@@ -215,6 +217,8 @@ Editor.defaultProps = {
   delay: 300,
   options: {},
   menuConfig: [],
+  defaultValue: '',
+  parserOptions: {},
 };
 
 export default Editor;
