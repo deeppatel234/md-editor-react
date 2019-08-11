@@ -16,13 +16,18 @@
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.js"></script>
   <link crossorigin rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.css" />
 
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/addon/mode/overlay.min.js"></script>
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/mode/markdown/markdown.min.js"></script>
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/mode/gfm/gfm.min.js"></script>
+
   <!-- node_modules is only used for testing. In prod, use unpkg.com (see readme) -->
-  <!-- <script src="https://unpkg.com/md-editor-react@0.0.1/dist/bundle.umd.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/md-editor-react@0.0.1/dist/style.css" /> -->
-  <script src="./node_modules/md-editor-react/dist/bundle.umd.js"></script>
-  <link rel="stylesheet" href="./node_modules/md-editor-react/dist/bundle.cjs.css" />
+  <script src="https://unpkg.com/md-editor-react@0.1.0/dist/bundle.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/md-editor-react@0.1.0/dist/style.css" />
+  <!-- <script src="./node_modules/md-editor-react/dist/bundle.umd.js"></script>
+  <link rel="stylesheet" href="./node_modules/md-editor-react/dist/style.css" /> -->
   <script>
-    const App = React.createElement(MarkDownEditor, {
+    const { MDEditor } = MarkDownEditor;
+    const App = React.createElement(MDEditor, {
       options: {
         mode: "gfm",
         lineNumbers: true
