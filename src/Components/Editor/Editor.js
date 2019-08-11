@@ -201,10 +201,7 @@ class Editor extends React.PureComponent {
                   <CloseIcon />
                 </div>
               )}
-              <MDPreview
-                markDownValue={editorValue}
-                parserOptions={parserOptions}
-              />
+              <MDPreview value={editorValue} parserOptions={parserOptions} />
             </div>
           )}
         </div>

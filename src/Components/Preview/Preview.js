@@ -4,9 +4,9 @@ import mdParser from '../../lib/mdParser';
 
 import '../../scss/md-view.scss';
 
-const Preview = ({ markDownValue, parserOptions }) => {
-  const markedValue = mdParser(parserOptions)(markDownValue);
-  const sanitizerValue = sanitizer(markedValue);
+const Preview = ({ value, parserOptions, sanitizerOptions }) => {
+  const markedValue = mdParser(parserOptions)(value);
+  const sanitizerValue = sanitizer(markedValue, sanitizerOptions);
 
   return (
     <div
@@ -14,6 +14,12 @@ const Preview = ({ markDownValue, parserOptions }) => {
       dangerouslySetInnerHTML={{ __html: sanitizerValue }}
     />
   );
+};
+
+Preview.defaultProps = {
+  parserOptions: {},
+  value: '',
+  sanitizerOptions: {},
 };
 
 export default Preview;

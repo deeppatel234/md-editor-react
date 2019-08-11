@@ -1,6 +1,6 @@
 import insane from 'insane';
 
-const options = {
+export const DEFAULT_SENITIZER_OPTIONS = {
   allowedTags: [...insane.defaults.allowedTags, 'input'],
   allowedAttributes: {
     ...insane.defaults.allowedAttributes,
@@ -12,4 +12,8 @@ const options = {
   },
 };
 
-export default markedValue => insane(markedValue, options);
+export default (markedValue, sanitizerOptions) =>
+  insane(markedValue, {
+    ...DEFAULT_SENITIZER_OPTIONS,
+    ...sanitizerOptions,
+  });
