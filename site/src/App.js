@@ -16,10 +16,10 @@ function App() {
     <div className="site-wrapper">
       <div class="header">
         <div className="left">
-          <img src="/logo.png" /> <span className="title">Markdown Editor React</span>
+          <img src="logo.png" /> <span className="title">Markdown Editor React</span>
         </div>
         <div className="right">
-          <a href="https://github.com/deeppatel234/md-editor-react" target="_blank" className="links"><GithubIcon /> Github</a>
+          <a href="https://github.com/deeppatel234/md-editor-react" target="_blank" rel="noopener noreferrer" className="links"><GithubIcon /> Github</a>
         </div>
       </div>
       <div class="body">
