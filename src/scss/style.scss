@@ -25,43 +25,32 @@
     margin: 0 auto;
   }
 
-  #{$prefix}icon {
-    display: inline-block;
-    color: inherit;
-    font-style: normal;
-    line-height: 0;
-    text-align: center;
-    text-transform: none;
-    vertical-align: -0.165em;
-  }
-
-  #{$prefix}menubar {
+  #{$prefix}menu {
     width: 100%;
     border: $border;
     border-bottom: none;
 
-    #{$prefix}menu {
-      display: flex;
-      align-items: center;
-      margin: 0;
-      padding: 0;
+    div {
+      display: inline-block;
+      margin: 2px;
+      padding: 5px;
+      cursor: pointer;
+      color: $font-color;
 
-      div {
-        margin: 2px;
-        padding: 5px;
-        cursor: pointer;
-        color: $font-color;
+      &:hover {
+        background-color: $light-gray;
+      }
 
-        &:hover {
-          background-color: $light-gray;
-        }
+      &.divider {
+        text-indent: -9999px;
+        margin: 0 5px;
+        padding: 5px 0;
+        border-right: 1px solid $light-gray;
+      }
 
-        &.divider {
-          text-indent: -9999px;
-          margin: 0 5px;
-          padding: 5px 0;
-          border-right: 1px solid $light-gray;
-        }
+      #{$prefix}icon {
+        line-height: 0;
+        vertical-align: -0.165em;
       }
     }
   }
@@ -70,6 +59,7 @@
     display: flex;
     flex: 1;
     border: $border;
+    overflow: auto;
   }
 
   #{$prefix}code {
@@ -84,16 +74,17 @@
 
   #{$prefix}preview {
     flex: 1;
-    position: relative;
     border-left: $border;
     overflow: auto;
 
     .close {
-      position: absolute;
+      position: sticky;
       right: 20px;
       top: 20px;
+      float: right;
       font-size: 1.5em;
       color: $font-color;
+      background-color: #ffffff;
       padding: 5px 10px;
       border: $border;
       border-radius: 5px;
@@ -101,6 +92,12 @@
 
       &:hover {
         background-color: $light-gray;
+      }
+
+      i {
+        line-height: 0;
+        display: inline-block;
+        vertical-align: -0.1em;
       }
     }
   }

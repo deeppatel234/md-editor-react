@@ -9,14 +9,12 @@ import 'md-editor-react/dist/style.css';
 
 function App() {
   return (
-    <div>
-      <MDEditor
-        defaultValue="Hello World"
-        parserOptions={{
-          highlight: code => hljs.highlightAuto(code).value,
-        }}
-      />
-    </div>
+    <MDEditor
+      defaultValue=""
+      parserOptions={{
+        highlight: code => hljs.highlightAuto(code).value,
+      }}
+    />
   );
 }
 

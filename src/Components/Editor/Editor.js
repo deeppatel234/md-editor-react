@@ -157,36 +157,34 @@ class Editor extends React.PureComponent {
 
     return (
       <div
-        className={`md-editor-wrapper ${className} ${
-          fullscreen ? 'fullscreen' : ''
+        className={`md-editor-wrapper ${className}${
+          fullscreen ? ' fullscreen' : ''
         }`}
       >
         {commandId && this.getMenuComponent()}
-        <div className={`md-editor-menubar ${htmlView ? 'd-none' : ''}`}>
-          <div className="md-editor-menu">
-            {menuConfigList.map((key, index) => {
-              const { title, icon, id, divider } = this.menuConfigMap[key];
-              if (divider) {
-                return (
-                  <div key={uniqueId('divider')} className="divider">
-                    |
-                  </div>
-                );
-              }
+        <div className={`md-editor-menu ${htmlView ? 'd-none' : ''}`}>
+          {menuConfigList.map((key, index) => {
+            const { title, icon, id, divider } = this.menuConfigMap[key];
+            if (divider) {
               return (
-                <div
-                  key={id}
-                  title={title}
-                  role="button"
-                  tabIndex={index + 1}
-                  data-command={id}
-                  onClick={this.onClickToolbar}
-                >
-                  {icon}
+                <div key={uniqueId('divider')} className="divider">
+                  |
                 </div>
               );
-            })}
-          </div>
+            }
+            return (
+              <div
+                key={id}
+                title={title}
+                role="button"
+                tabIndex={index + 1}
+                data-command={id}
+                onClick={this.onClickToolbar}
+              >
+                {icon}
+              </div>
+            );
+          })}
         </div>
         <div className="md-editor-area">
           <div
@@ -196,14 +194,14 @@ class Editor extends React.PureComponent {
           {watchMode && (
             <div className="md-editor-preview">
               {htmlView && (
-                <div
+                <span
                   role="button"
                   className="close"
                   tabIndex="0"
                   onClick={this.onClickCloseHTMLPreview}
                 >
                   <CloseIcon />
-                </div>
+                </span>
               )}
               <MDPreview
                 value={editorValue}
