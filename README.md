@@ -74,7 +74,7 @@ import 'md-editor-react/dist/style.css';
 |`sanitizerOptions`|object|[DOMPurify](https://github.com/cure53/DOMPurify "DOMPurify") senitizer [options](https://github.com/cure53/DOMPurify#can-i-configure-dompurify "options")|
 
 
-## Highlight code in html preivew
+## Highlight code in html preview
 
 for highlight code you can used [highlightjs](https://highlightjs.org "highlightjs") library.
 
