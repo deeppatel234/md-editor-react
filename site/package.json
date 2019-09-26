@@ -4,16 +4,16 @@
   "private": true,
   "homepage": "https://deeppatel234.github.io/md-editor-react/",
   "dependencies": {
-    "codemirror": "^5.48.2",
-    "highlight.js": "^9.15.9",
-    "md-editor-react": "^0.2.0",
+    "codemirror": "^5.49.0",
+    "highlight.js": "^9.15.10",
+    "md-editor-react": "^0.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.0"
+    "react-scripts": "3.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
