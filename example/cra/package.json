@@ -11,8 +11,8 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
-    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
-    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "start": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "build": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -30,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3"
   }
 }
